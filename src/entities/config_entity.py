@@ -12,5 +12,10 @@ class DataIngestionConfigs:
 
 @dataclass
 class DataTransformationConfigs:
-    pass
+    LABEL: str = LABEL
+    INPLACE: bool =  INPLACE
+    CONTENT: str = CONTENT
+    USECOLS_FAKEBR: list = USECOLS_FAKEBR
+    MAP_LABEL_COL: dict = MAP_LABEL_COL
+    USECOLS: list = USECOLS
     
