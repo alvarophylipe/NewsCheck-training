@@ -12,3 +12,4 @@ def exception(func):
         except Exception as e:
             logging.error(f"Error in {func.__name__} function: {e}")
             raise CustomException(e, sys) from e
+    return wrapper

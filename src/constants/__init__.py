@@ -23,3 +23,4 @@ USECOLS: list = ['label', 'content']
 USECOLS_FAKEBR: list = ['label', 'preprocessed_news']
 MAP_LABEL_COL: dict = {'fake': 1, 'true': 0}
 FAKE_BR_CORPUS_URL: str = 'https://raw.githubusercontent.com/roneysco/Fake.br-Corpus/master/preprocessed/pre-processed.csv'
+RENAME_COL = {'preprocessed_news': 'content'}

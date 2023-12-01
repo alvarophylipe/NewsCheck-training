@@ -19,14 +19,15 @@ class DataTransformation:
         self.transformation_configs = transformation_configs
     
     
-    @exception
-    def run_text_cleaning(self, text: str):
+    def run_text_cleaning(self, text: str) -> str:
         doc = text.lower() # normalize text 
         doc = unidecode(doc) # remove accentuation
         doc = [word for word in doc if len(word) < 19 and len(word) > 1] # remove word more than 19 chars
+        doc = ' '.join(doc)
         doc = re.sub(r'[^\w\s]', '', doc) # remove punctuation
         doc = nlp(doc) # tokenization
         doc = [token.text for token in doc if not token.is_stop] # remove stopwords
+        doc = ' '.join(doc)
         doc = nlp(doc) # tokenization
         doc = [token.lemma_ for token in doc] # transforming in lemma format
         doc = ' '.join(doc) # normalize text
@@ -38,14 +39,14 @@ class DataTransformation:
     def _read_csv_data(self, filepath: str, filename: str) -> pd.DataFrame:
         if filename == 'fake_br_corpus.csv':
             data = pd.read_csv(filepath, usecols=self.transformation_configs.USECOLS_FAKEBR)
-            data.rename(columns=self.transformation_configs.RENAME_LABEL_COL, 
+            data.rename(columns=self.transformation_configs.RENAME_COL, 
                         inplace=self.transformation_configs.INPLACE)
             data['label'] = data['label'].map(self.transformation_configs.MAP_LABEL_COL)
-            data['content'] = data['content'].apply(self._run_text_cleaning)
+            data['content'] = data['content'].apply(lambda x: self.run_text_cleaning(x))
             return data
         
         data = pd.read_csv(filepath, usecols=self.transformation_configs.USECOLS)
-        data['content'].apply(self.run_transformation)
+        data['content'].apply(lambda x: self.run_text_cleaning(x))
         return data
 
 
