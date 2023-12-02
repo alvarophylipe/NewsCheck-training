@@ -24,6 +24,8 @@ class ModelTrainer:
     def split_data(self) -> Tuple:
         dataframe = pd.read_csv(self.transformation_artifacts.transformed_data_file_path, index_col=False)
 
+        dataframe = dataframe.dropna()
+
         X = dataframe[CONTENT]
         Y = dataframe[LABEL]
 
@@ -41,14 +43,14 @@ class ModelTrainer:
         tokenizer = Tokenizer(num_words=self.model_trainer_configs.NUM_WORDS)
         tokenizer.fit_on_texts(x_train)
         sequences = tokenizer.texts_to_sequences(x_train)
-        pad_sequences = pad_sequences(sequences, maxlen=self.model_trainer_configs.MAX_LEN)
+        pad_seqs = pad_sequences(sequences, maxlen=self.model_trainer_configs.MAX_LEN)
 
         os.makedirs(self.model_trainer_configs.MODEL_SAVE_PATH, exist_ok=True)
         tokenizer_path = os.path.join(self.model_trainer_configs.MODEL_SAVE_PATH, 'tokenizer.pkl')
         
         joblib.dump(tokenizer, tokenizer_path, protocol=pickle.HIGHEST_PROTOCOL)
 
-        return pad_sequences
+        return pad_seqs
 
     
     

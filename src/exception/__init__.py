@@ -28,5 +28,5 @@ def exception(func):
             return result
         except Exception as e:
             logging.error(f"Error in {func.__name__} function: {e}")
-            raise CustomException(e, sys) from e
+            raise CustomException(e, func_name=func.__name__) from e
     return wrapper
