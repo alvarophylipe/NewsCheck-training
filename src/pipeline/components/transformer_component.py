@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import spacy
 from unidecode import unidecode
-from src.entities.decorator import exception
+from src.exception import exception
 from src.entities.config_entity import DataTransformationConfigs
 from src.entities.artifact_entity import DataIngestionArtifacts, TransformationArtifacts
 

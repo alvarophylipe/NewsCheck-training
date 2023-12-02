@@ -19,3 +19,18 @@ class DataTransformationConfigs:
     MAP_LABEL_COL = MAP_LABEL_COL
     USECOLS = USECOLS
     RENAME_COL = RENAME_COL
+
+
+@dataclass
+class ModelTrainerConfigs:
+    X_TRAIN_FILE: str = X_TRAIN_FILE
+    Y_TRAIN_FILE: str = Y_TRAIN_FILE
+    X_TEST_FILE: str = X_TEST_FILE
+    Y_TEST_FILE: str = Y_TEST_FILE
+    NUM_WORDS: int = MAX_WORDS
+    MAX_LEN: int = MAX_LEN
+    MODEL_SAVE_PATH: str = MODEL_SAVE_PATH
+    RANDOM_STATE: str = RANDOM_STATE
+    EPOCH: str = EPOCH
+    BATCH_SIZE: str = BATCH_SIZE
+    VALIDATION_SPLIT: str = VALIDATION_SPLIT

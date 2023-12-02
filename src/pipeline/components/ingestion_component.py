@@ -2,7 +2,7 @@ import os
 import sys
 import shutil
 from typing import Optional, Tuple
-from src.entities.decorator import exception
+from src.exception import exception
 from src.entities.artifact_entity import DataIngestionArtifacts
 from src.entities.config_entity import DataIngestionConfigs
 
