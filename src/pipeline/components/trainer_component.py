@@ -9,6 +9,7 @@ from src.exception import exception
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.utils import pad_sequences
+from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from src.entities.artifact_entity import TransformationArtifacts, ModelTrainerArtifacts
 from src.entities.config_entity import ModelTrainerConfigs
 from src.model.model import ModelArchitecture
@@ -64,14 +65,22 @@ class ModelTrainer:
 
         sequences = self.data_tokenizer(x_train=x_train)
 
+        model_file = os.path.join(self.model_trainer_configs.MODEL_SAVE_PATH, 'best_model.h5')
+        modelcheck_point = ModelCheckpoint(model_file, save_best_only=True, 
+                                           save_weights_only=False, monitor='val_loss',
+                                           mode='min', verbose=1)
+        early_stopping = EarlyStopping(monitor='val_loss', patience=2, restore_best_weights=True,
+                                       verbose=1)
+        callbacks = [modelcheck_point, early_stopping]
+
         model.fit(
             sequences, y_train,
             batch_size=self.model_trainer_configs.BATCH_SIZE,
             epochs=self.model_trainer_configs.EPOCH,
-            validation_split=self.model_trainer_configs.VALIDATION_SPLIT
+            validation_split=self.model_trainer_configs.VALIDATION_SPLIT,
+            callbacks=callbacks
         )
 
-        model.save(self.model_trainer_configs.MODEL_SAVE_PATH)
 
         dir_path_name = os.path.dirname(self.transformation_artifacts.transformed_data_file_path)
 

@@ -8,7 +8,7 @@ class ModelArchitecture:
     def __init__(self) -> None:
         pass
 
-
+    @staticmethod
     def get_model() -> Sequential:
         model = Sequential()
         model.add(Embedding(MAX_WORDS, EMBEDDING_DIM, input_length=MAX_LEN))
