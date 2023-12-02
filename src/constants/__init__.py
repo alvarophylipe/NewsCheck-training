@@ -37,8 +37,8 @@ BATCH_SIZE: int = 64
 VALIDATION_SPLIT: float = 0.2
 
 # Model Architecture constants
-MAX_WORDS: int = 60000
-MAX_LEN: int = 1500
+MAX_WORDS: int = 30000
+MAX_LEN: int = 1200
 LOSS: str = 'binary_crossentropy'
 METRICS: list = ['accuracy']
 ACTIVATION: str = 'sigmoid'

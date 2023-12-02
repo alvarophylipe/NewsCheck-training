@@ -1,5 +1,6 @@
+import os
 import sys
-sys.path.append('/inspector')
+sys.path.append(os.path.abspath('.'))
 from src.pipeline.components.ingestion_component import DataIngestion
 from src.pipeline.components.transformer_component import DataTransformation
 from src.pipeline.components.trainer_component import ModelTrainer
