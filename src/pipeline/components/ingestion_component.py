@@ -1,6 +1,7 @@
 import os
 import sys
 import shutil
+import pandas as pd
 from typing import Optional, Tuple
 from src.exception import exception
 from src.entities.artifact_entity import DataIngestionArtifacts
@@ -17,23 +18,18 @@ class DataIngestion:
         os.makedirs(self.data_ingestion_configs.PROCESSED_DATA_DIR, exist_ok=True)
         os.makedirs(self.data_ingestion_configs.RAW_DATA_DIR, exist_ok=True)
         
-        raw_data_path = os.path.join(os.path.abspath('.'), 'raw_data')
-
-        if os.path.exists(raw_data_path):
-            for file in os.listdir(raw_data_path):
-                file_path = os.path.join(raw_data_path, file)
-                target_path = os.path.join(self.data_ingestion_configs.RAW_DATA_DIR, file)
-                shutil.copy(file_path, target_path)
+        dataframe = pd.read_csv(self.data_ingestion_configs.DATA_URL)
+        dataframe.to_csv(self.data_ingestion_configs.RAW_DATA_FILE)
         
-        return self.data_ingestion_configs.RAW_DATA_DIR, self.data_ingestion_configs.PROCESSED_DATA_DIR
+        return self.data_ingestion_configs.RAW_DATA_FILE, self.data_ingestion_configs.PROCESSED_DATA_DIR
 
 
 
     @exception
     def run_data_ingestion(self) -> DataIngestionArtifacts:
         
-        raw_data_dir, processed_data_dir = self._move_data()
+        raw_data_file, processed_data_dir = self._move_data()
 
         return DataIngestionArtifacts(
-            raw_data_path=raw_data_dir,
+            raw_data_file=raw_data_file,
             processed_data_path=processed_data_dir)
