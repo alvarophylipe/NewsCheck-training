@@ -13,6 +13,6 @@ router = APIRouter(
 templates = Jinja2Templates(directory='templates')
 
 # HTTP Methods
-@router.get('/about')
+@router.get('/')
 async def detector(request: Request):
     return templates.TemplateResponse("about.html", {'request': request})

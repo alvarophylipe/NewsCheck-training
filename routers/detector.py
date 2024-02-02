@@ -13,6 +13,15 @@ router = APIRouter(
 templates = Jinja2Templates(directory='templates')
 
 # HTTP Routers
-@router.get('/detector')
+@router.get('/')
 async def detector(request: Request):
     return templates.TemplateResponse("detector.html", {'request': request})
+
+@router.post('/process')
+async def process(request: Request, type: str = Form(...), text: str = Form(...)):
+    if type == 'text':
+        prediction = 0
+    elif type == 'link':
+        prediction = 1
+    
+    return {"prediction": prediction}

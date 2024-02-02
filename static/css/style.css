@@ -21,3 +21,33 @@ font-family: "Poppins", sans-serif;
 font-weight: 700;
 font-style: normal;
 }
+
+.gradient-custom {
+    background: linear-gradient(98deg, #15A8FA -11%, #8AC6E8 104.27%, #8AC6E8 104.27%);
+}
+
+
+.block-text {
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.color-gray-medium {
+    color: #888888;
+}
+
+.color-gray-dark {
+    color: #454545;
+}
+
+.loading-btn:hover {
+    filter: brightness(0.9);
+}
+
+.send-img {
+    background-image: url(../img/send.svg);
+    background-size: cover;
+}
