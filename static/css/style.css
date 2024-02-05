@@ -1,3 +1,9 @@
+:root {
+    --color-true: #43C62D;
+    --color-fake: #E41B1B;
+}
+
+
 .poppins-regular {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -50,4 +56,62 @@ font-style: normal;
 .send-img {
     background-image: url(../img/send.svg);
     background-size: cover;
+}
+
+.hidden {
+    visibility: hidden;
+    height: 0%;
+    width: 0%;
+}
+
+.circle-true {
+    width: 100vmin;
+    height: 100vmin;
+    background-color: var(--color-true);
+    border-radius: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: expandAndFade 3s ease-out forwards;
+    z-index: -1; /* Coloca a circunferência no fundo */
+}
+
+.circle-fake {
+    width: 100vmin;
+    height: 100vmin;
+    background-color: var(--color-fake);
+    border-radius: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: expandAndFade 3s ease-out forwards;
+    z-index: -1; /* Coloca a circunferência no fundo */
+}
+
+@keyframes expandAndFade {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .text-input-custom {
+        width: 73%;
+        border: 2px solid #b5b5b5;
+    }
+
+    .select-custom {
+        width: 25%;
+    }
 }

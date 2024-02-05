@@ -1,4 +1,38 @@
 {% extends 'layout.html' %}
 {% block content %}
 
+<section class="mx-5 mt-4 mt-md-3 poppins-regular text-justify">
+    <div>
+        <h5 class="poppins-bold mb-4">
+            Como o modelo funciona?
+        </h5>
+        <p class="m-1">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Antes de começar a classificação, os textos ou notícias passam por uma preparação inicial. Esse processo transforma as palavras em partes chamadas "tokens", que podem ser palavras completas ou fragmentos delas. Isso é importante para organizar os dados antes de apresentá-los ao modelo. 
+        </p>
+        <p class="m-1">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Durante essa fase, os dados seguem por uma camada especial que cria representações numéricas, chamadas de "embeddings", em um espaço limitado. Esses embeddings guardam informações sobre o significado e as relações entre as palavras, ajudando o modelo a entender e processar os detalhes do texto. 
+        </p>
+        <p class="m-1">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Na etapa do modelo, escolhemos usar o BERT, em particular a versão pré-treinada em português chamada Bertimbau. Este modelo já foi treinado previamente em grandes conjuntos de dados não rotulados, o que o torna proficiente na compreensão da língua portuguesa. Ademais, o Bertimbau foi ajustado (fine-tuning) especificamente para identificar conjuntos de palavras que podem indicar notícias potencialmente falsas. 
+        </p>
+        <p class="m-1">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Durante esse processo de ajuste fino, o modelo é treinado usando dados rotulados, onde notícias falsas são marcadas como 1 e as verdadeiras como 0. Isso permite que o modelo aprenda a diferenciar entre as características que indicam se uma notícia é autêntica ou falsa. Em resumo, essa abordagem ajuda o Bertimbau a classificar textos, atribuindo valores binários (0 para real e 1 para falso) com base nas características aprendidas durante o treinamento, proporcionando uma eficaz detecção de fake news em português.
+        </p>
+    </div>
+    <hr class="my-4">
+    <div class="mt-5">
+        <h5 class="poppins-bold">
+            O Autor
+        </h5>
+        <p class="mt-3 mb-0">
+            <span class="poppins-semibold">Alvaro Phylipe Tavares de Melo Gondim: </span>
+            Graduando do Curso de Bacharelado em Engenharia de Software na UNINTER.
+        </p>
+        <p>
+            <span class="poppins-semibold">CONTATO: </span>
+            alvarophylipe@gmail.com | <a href="https://www.linkedin.com/in/alvarophylipe">linkedin.com/in/alvarophylipe</a>
+        </p>
+    </div>
+</section>
+
 {% endblock %}

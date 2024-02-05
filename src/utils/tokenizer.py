@@ -13,7 +13,7 @@ def encode(data: List[str]) -> Dict[str, tf.Tensor]:
         padding=PADDING,
         truncation=TRUNCATION,
         add_special_tokens=ADD_SPECIAL_TOKENS,
-        return_tensor=TENSOR_TYPE,
+        return_tensors=TENSOR_TYPE,
         return_attention_mask=RETURN_ATTENTION_MASK,
         return_token_type_ids=RETURN_TOKEN_TYPE_IDS
     )

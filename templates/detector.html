@@ -8,19 +8,21 @@
         </p>
     </div>
     <div class="px-5 my-4">
-        <form class="row justify-content-end forms">
-            <div class="col-md-12 poppins-medium my-4 block-text p-3 rounded-2 h-100">
-                <select class="form-select poppins-medium border-2 text-center" name="type" id="type" onchange="changePlaceholder()" required>
+        <form class="row justify-content-center justify-content-lg-start forms ps-lg-3">
+            <div class="col-md-12 poppins-medium my-4 block-text p-3 p-lg-2 rounded-2 h-100 col-lg-9 row m-lg-0">
+                <select class="form-select select-custom poppins-medium border-2 text-center col-lg-3" name="type" id="type" onchange="changePlaceholder()" required>
                     <option selected value="text">Texto</option>
                     <option value="link">Link</option>
                 </select>
-                <input id="text" type="text" name="text" class="border-1 rounded-2 border-opacity-25 poppins-regular w-100 h-75 mt-2 ps-3 p-2" placeholder="Cole o texto aqui..." name="text" autocomplete="off" required>
+                <input id="text" type="text" name="text" class="col-lg-7 rounded-2 border-opacity-25 poppins-regular m-lg-0 h-75 mt-2 ps-3 p-2 p-lg-2 text-input-custom ms-lg-2" placeholder="Cole o texto aqui..." name="text" autocomplete="off" required>
             </div>
-            <div class="col-md-12 d-flex justify-content-end p-0">
-                <button id="loadingButton" type="submit" class="btn loading-btn border-0 gradient-custom w-100">
-                    <img src="{{ url_for('static', path='/img/send.svg') }}" alt="Enviar" class="img-fluid">
+            <div class="col-md-12 d-md-flex justify-content-end p-0 col-lg-3 px-lg-3 m-lg-0 loading-btn">
+                <button id="loadingButton" type="submit" class="btn border-0 gradient-custom w-100">
+                    <img src="{{ url_for('static', path='/img/send.svg') }}" alt="Enviar" id="sendImg">
+                    <div class="spinner-border text-light hidden" id="spinner"></div>
                 </button>
             </div>
+            <div id="circleAnimation"></div>
         </form>
     </div>
     <div class="prediction-result m-2 p-2 text-center" id="result">
@@ -30,8 +32,8 @@
         <h5 class="h6 color-gray-dark">
             <b>Como funciona?</b>
         </h5>
-        <p class="font-size-custom text-justify color-gray-medium">
-            O Inspector é como um amigo inteligente que compreende palavras de maneira única. Através de um treinamento especial, ele aprendeu o significado das palavras e como elas se encaixam em diferentes situações. Ao enviar suas notícias, ele não apenas analisa palavras isoladas, mas entende o contexto para fornecer respostas personalizadas e úteis. Imagine ter uma conversa com um amigo que sempre tem as informações certas. Assim é o Inspector, tornando sua interação mais fácil e amigável!
+        <p class="font-size-custom text-justify color-gray-medium w-100">
+            O Inspector é como um amigo inteligente que compreende palavras de maneira única. Através de um treinamento especial, ele aprendeu o contexto das palavras e como eles se encaixam em diferentes situações. Ao enviar suas notícias, ele não apenas analisa palavras isoladas, mas entende o contexto para fornecer respostas personalizadas e úteis. Imagine ter uma conversa com um amigo que sempre tem as informações certas. Assim é o Inspector, tornando sua interação mais fácil e amigável!
         </p>
     </div>
 </section>

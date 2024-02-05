@@ -14,9 +14,9 @@ function changePlaceholder() {
 class FormValidation {
     constructor() {
         this.form = document.querySelector('.forms');
-        this.button = document.getElementById('loadingButton')
-        this.spinner = document.createElement('div');
-        this.spinner.classList.add('loading-spinner', 'text-center');
+        this.spinner = document.getElementById('spinner');
+        this.sendImg = document.getElementById('sendImg');
+        this.circleAnimation = document.getElementById("circleAnimation")
         this.events();
     }
 
@@ -24,35 +24,31 @@ class FormValidation {
         this.form.addEventListener('submit', e => {
             this.handleSubmit(e);
         });
-
+        
+        this.hideLoadingSpinner();
     }
 
     handleSubmit(e) {
         e.preventDefault();
         const typeInput = document.getElementById("type").value;
         const textInput = document.getElementById("text");
-        
-        console.log(this.button)
-        this.showLoadingSpinner();
 
         if (typeInput === 'link') {
-            this.submitLinkType(typeInput, textInput)
+            this.submitLinkType(typeInput, textInput);
+        } else {
+            this.submitTextType(typeInput, textInput);
         }
-
-        this.submitTextType(typeInput, textInput);
-
 
     }
 
     showLoadingSpinner() {
-        this.button.addEventListener("click"), () => {
-            this.button.classList.remove('btn')
-        }
+        this.sendImg.classList.add('hidden');
+        this.spinner.classList.remove('hidden');
     }
 
     hideLoadingSpinner() {
-        this.button.innerHTML = ''
-        this.button.disabled = false;
+        this.spinner.classList.add('hidden');
+        this.sendImg.classList.remove('hidden');
     }
 
     submitTextType(typeInput, textInput){
@@ -64,9 +60,11 @@ class FormValidation {
 
         if (words < 30) {
             this.createError(textInput, 'Texto muito pequeno.');
+            this.hideLoadingSpinner();
             return;
         }
 
+        this.showLoadingSpinner();
         this.submitForm(typeInput, text);
 
     }
@@ -81,6 +79,7 @@ class FormValidation {
             return;
         }
         
+        this.showLoadingSpinner();
         this.submitForm(typeInput, text)
 
     }
@@ -100,10 +99,22 @@ class FormValidation {
         div.classList.add('error-text', 'text-danger', 'text-center', 'mt-2');
         field.insertAdjacentElement('afterend', div);
     }
-
     
+    backgroundAnimation(result) {
+        if (result === 0) {
+            this.circleAnimation.classList.add('circle-true');
+        } else {
+            this.circleAnimation.classList.add('circle-fake');
+        }
+    }
+
+    clearAnimation() {
+        this.circleAnimation.classList.remove('circle-true', 'circle-fake');
+    }
 
     submitForm(type, text) {
+        this.showLoadingSpinner();
+        this.clearAnimation();
         fetch('/detector/process', {
             method: 'POST',
             headers: {
@@ -113,21 +124,24 @@ class FormValidation {
         })
         .then(response => response.json())
         .then(data => {
-            this.showResult(data.prediction)
+            this.showResult(data.prediction);
         })
     }
     
-    showResult(resultado) {
+    showResult(result) {
+        this.hideLoadingSpinner();
+        this.backgroundAnimation(result);
         var resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = '<p> Resultado: ' + resultado + '</p>';
+        resultDiv.innerHTML = '<p> Resultado: ' + result + '</p>';
     }
 
     cleanErrorText() {
-        const errorText = this.form.querySelector('.error-text')
+        const errorText = this.form.querySelector('.error-text');
         if (errorText) {
-            errorText.remove()
+            errorText.remove();
         }
     }
 }
 
-const validate = new FormValidation
+// showSpinner()
+const validate = new FormValidation;

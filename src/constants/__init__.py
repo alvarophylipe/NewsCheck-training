@@ -43,7 +43,7 @@ DO_LOWER_CASE: bool = False
 
 # Tokenization Parameters
 MAX_LEN: int = 512
-PADDING: str = 'max_length',
+PADDING: str = 'max_length'
 TRUNCATION: bool = True
 TENSOR_TYPE: str = 'tf'
 ADD_SPECIAL_TOKENS: bool = True
