@@ -10,11 +10,11 @@
     <div class="px-5 my-4">
         <form class="row justify-content-center justify-content-lg-start forms ps-lg-3">
             <div class="col-md-12 poppins-medium my-4 block-text p-3 p-lg-2 rounded-2 h-100 col-lg-9 row m-lg-0">
-                <select class="form-select select-custom poppins-medium border-2 text-center col-lg-3" name="type" id="type" onchange="changePlaceholder()" required>
+                <select class="form-select select-custom poppins-medium text-center col-lg-3 border-2" name="type" id="type" onchange="changePlaceholder()" required>
                     <option selected value="text">Texto</option>
                     <option value="link">Link</option>
                 </select>
-                <input id="text" type="text" name="text" class="col-lg-7 rounded-2 border-opacity-25 poppins-regular m-lg-0 h-75 mt-2 ps-3 p-2 p-lg-2 text-input-custom ms-lg-2" placeholder="Cole o texto aqui..." name="text" autocomplete="off" required>
+                <input id="text" type="text" name="text" class="col-lg-7 rounded-2 poppins-regular m-lg-0 h-75 mt-2 ps-3 p-2 p-lg-2 text-input-custom ms-lg-2 border-custom" placeholder="Cole o texto aqui..." name="text" autocomplete="off" required>
             </div>
             <div class="col-md-12 d-md-flex justify-content-end p-0 col-lg-3 px-lg-3 m-lg-0 loading-btn">
                 <button id="loadingButton" type="submit" class="btn border-0 gradient-custom w-100">
@@ -22,10 +22,10 @@
                     <div class="spinner-border text-light hidden" id="spinner"></div>
                 </button>
             </div>
-            <div id="circleAnimation"></div>
+            <div id="backgroundAnimation"></div>
         </form>
     </div>
-    <div class="prediction-result m-2 p-2 text-center" id="result">
+    <div class="text-center poppins-medium m-4 p-3 mx-5" id="outputText">
         <!-- Resultado da previsão aqui -->
     </div>
     <div class="mx-5">

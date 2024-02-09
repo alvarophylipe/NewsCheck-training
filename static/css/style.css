@@ -1,6 +1,12 @@
 :root {
     --color-true: #43C62D;
     --color-fake: #E41B1B;
+    --color-gray-one: #b5b5b5;
+    --color-gray-two: #888888;
+    --color-gray-three: #454545;
+    --color-blue-one: #8AC6E8;
+    --color-blue-two: #8AC6E8;
+    --color-blue-three: #15A8FA;
 }
 
 
@@ -11,27 +17,30 @@
 }
 
 .poppins-medium {
-font-family: "Poppins", sans-serif;
-font-weight: 500;
-font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .poppins-semibold {
-font-family: "Poppins", sans-serif;
-font-weight: 600;
-font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .poppins-bold {
-font-family: "Poppins", sans-serif;
-font-weight: 700;
-font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .gradient-custom {
-    background: linear-gradient(98deg, #15A8FA -11%, #8AC6E8 104.27%, #8AC6E8 104.27%);
+    background: linear-gradient(98deg, var(--color-blue-three) -11%, var(--color-blue-two) 104.27%, var(--color-blue-one) 104.27%);
 }
 
+.border-custom {
+    border: 2px solid var(--color-gray-one) !important;
+}
 
 .block-text {
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
@@ -42,20 +51,15 @@ font-style: normal;
 }
 
 .color-gray-medium {
-    color: #888888;
+    color: var(--color-gray-two);
 }
 
 .color-gray-dark {
-    color: #454545;
+    color: var(--color-gray-three);
 }
 
 .loading-btn:hover {
     filter: brightness(0.9);
-}
-
-.send-img {
-    background-image: url(../img/send.svg);
-    background-size: cover;
 }
 
 .hidden {
@@ -87,7 +91,7 @@ font-style: normal;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     animation: expandAndFade 3s ease-out forwards;
-    z-index: -1; /* Coloca a circunferência no fundo */
+    z-index: -1;
 }
 
 @keyframes expandAndFade {
@@ -105,10 +109,10 @@ font-style: normal;
     }
 }
 
+
 @media (min-width: 992px) {
     .text-input-custom {
         width: 73%;
-        border: 2px solid #b5b5b5;
     }
 
     .select-custom {
