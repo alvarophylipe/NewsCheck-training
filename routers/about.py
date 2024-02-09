@@ -14,5 +14,5 @@ templates = Jinja2Templates(directory='templates')
 
 # HTTP Methods
 @router.get('/')
-async def detector(request: Request):
+async def about(request: Request):
     return templates.TemplateResponse("about.html", {'request': request})

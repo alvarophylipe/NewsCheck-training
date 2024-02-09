@@ -101,17 +101,17 @@ class FormValidation {
     submitTextType(){
         UIHandler.removeErrorText();
 
-        const text = document.getElementById("text").value;
-        const words = this.countWords(text);
+        const text = document.getElementById("text");
+        const words = this.countWords(text.value);
 
         if (words < 30) {
-            UIHandler.createError(textInput, 'Texto muito pequeno.');
+            UIHandler.createError(text, 'Texto muito pequeno.');
             UIHandler.hideSpinner();
             return;
         }
 
         UIHandler.showSpinner();
-        this.submitForm('text', text);
+        this.submitForm('text', text.value);
 
     }
 
@@ -119,15 +119,15 @@ class FormValidation {
     submitLinkType() {
         UIHandler.removeErrorText()
 
-        const link = document.getElementById("link").value;
+        const link = document.getElementById("text");
 
-        if (!this.isLink(link)) {
-            UIHandler.createError(textInput, 'Insira um link válido.');
+        if (!this.isLink(link.value)) {
+            UIHandler.createError(link, 'Insira um link válido.');
             return;
         }
         
         UIHandler.showSpinner();
-        this.submitForm('link', link)
+        this.submitForm('link', link.value)
 
     }
 
@@ -150,9 +150,12 @@ class FormValidation {
         fetch('/check/process', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/json',
             },
-            body: 'type=' + encodeURIComponent(type) + '&text=' + encodeURIComponent(text),
+            body: JSON.stringify({
+                "type": type,
+                "content": text
+            }),
         })
         .then(response => response.json())
         .then(data => {

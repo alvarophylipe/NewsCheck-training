@@ -39,7 +39,7 @@ RANDOM_STATE: int = 42
 
 # Tokenizer Constants 
 TOKENIZER_FROM_PRETRAINED: str = 'neuralmind/bert-base-portuguese-cased'
-DO_LOWER_CASE: bool = False
+DO_LOWER_CASE: bool = True
 
 # Tokenization Parameters
 MAX_LEN: int = 512

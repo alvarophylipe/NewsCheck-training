@@ -1,11 +1,13 @@
-from fastapi import APIRouter, Request, Form
+from fastapi import APIRouter, Request, Depends, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-# from src.utils.tokenizer import encode
-# from transformers import TFBertForSequenceClassification
-# from src.modules.web_extraction import web_extract
-# from scipy.special import softmax
-# from numpy import argmax
+from models import PredictionItem
+from request_models import PredictionItemRequest
+from src.utils.tokenizer import encode
+from transformers import TFBertForSequenceClassification
+from src.utils.web_extraction import web_extract
+from scipy.special import softmax
+from numpy import argmax
 
 # Router Configs 
 router = APIRouter(
@@ -17,27 +19,28 @@ router = APIRouter(
 # Templates
 templates = Jinja2Templates(directory='templates')
 
-# model = TFBertForSequenceClassification.from_pretrained('serving/saved_model')
+
+model = TFBertForSequenceClassification.from_pretrained("serving/saved_model")
+
+
+def predict(text):
+    tokens = encode([text])
+    preds = model.predict(tokens)[0]
+    prediction = argmax(softmax(preds))
+
+    return {"prediction": int(prediction)}
 
 # HTTP Routers
-@router.get('/')
-async def detector(request: Request):
+@router.get('/', response_class=HTMLResponse)
+async def check(request: Request):
     return templates.TemplateResponse("check.html", {'request': request})
 
 @router.post('/process')
-async def process(request: Request, type: str = Form(...), text: str = Form(...)):
-    if type == 'text':
-        pass
-        # tokens = encode([text])
-        # preds = model.predict(tokens)[0]
-        # prediction = argmax(softmax(preds))
-    elif type == 'link':
-        pass
-        # raw = web_extract(text)
-        # tokens = encode([raw])
-        # preds = model.predict(tokens)[0]
-        # prediction = argmax(softmax(preds))
+async def process(request: Request, prediction_item: PredictionItemRequest):
+
+    if prediction_item.type == 'text':
+        return predict(prediction_item.content)
+    else:
+        return predict(web_extract(prediction_item.content))
+
     
-    prediction = 0
-    
-    return {"prediction": int(prediction)}
