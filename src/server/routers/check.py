@@ -8,6 +8,7 @@ from transformers import TFBertForSequenceClassification
 from src.utils.web_extraction import web_extract
 from scipy.special import softmax
 from numpy import argmax
+from src.constants import MODEL
 
 # Router Configs 
 router = APIRouter(
@@ -20,7 +21,7 @@ router = APIRouter(
 templates = Jinja2Templates(directory='src/server/templates')
 
 
-model = TFBertForSequenceClassification.from_pretrained("serving/saved_model")
+model = TFBertForSequenceClassification.from_pretrained(MODEL)
 
 
 def predict(text):

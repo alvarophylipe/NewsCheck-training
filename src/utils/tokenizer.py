@@ -3,7 +3,7 @@ from src.constants import *
 import tensorflow as tf
 from transformers import BertTokenizer
 
-_tokenizer = BertTokenizer.from_pretrained(TOKENIZER_FROM_PRETRAINED, 
+_tokenizer = BertTokenizer.from_pretrained(MODEL, 
                                           do_lower_case=DO_LOWER_CASE)
 
 def encode(data: List[str]) -> Dict[str, tf.Tensor]:

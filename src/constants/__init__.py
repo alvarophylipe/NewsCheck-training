@@ -83,3 +83,6 @@ ARGS: Dict[str, bool] = {
 }
 MODEL_SAVE_PATH = os.path.join(os.path.abspath('.'), 'serving', 'saved_model')
 METRIC_SAVE_PATH = os.path.join(os.path.abspath('.'), 'metrics')
+
+# Model from huggingface
+MODEL = "alvarophylipe/portuguese-fake-news-classification"
