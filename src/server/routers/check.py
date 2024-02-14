@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Request, Depends, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from models import PredictionItem
-from request_models import PredictionItemRequest
+from src.server.models import PredictionItem
+from src.server.request_models import PredictionItemRequest
 from src.utils.tokenizer import encode
 from transformers import TFBertForSequenceClassification
 from src.utils.web_extraction import web_extract
@@ -17,7 +17,7 @@ router = APIRouter(
 )
 
 # Templates
-templates = Jinja2Templates(directory='templates')
+templates = Jinja2Templates(directory='src/server/templates')
 
 
 model = TFBertForSequenceClassification.from_pretrained("serving/saved_model")

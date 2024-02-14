@@ -1,24 +1,8 @@
-from fastapi import FastAPI
-from fastapi.responses import RedirectResponse
-from routers import check, about
-from starlette.staticfiles import StaticFiles
-from starlette import status
+import sys
+import uvicorn
+from os import getenv
 
-# Class Instance
-app = FastAPI()
-
-# Static Files
-app.mount('/static', StaticFiles(directory="static"), name="static")
-
-# Routers
-app.include_router(check.router)
-app.include_router(about.router)
-
-# Handlers
-@app.get("/")
-async def default_route():
-    return RedirectResponse(url='/check', status_code=status.HTTP_302_FOUND)
-
-@app.exception_handler(404)
-async def not_found(request, exc):
-    return RedirectResponse(url='/check', status_code=status.HTTP_302_FOUND)
+if __name__ == "__main__":
+    sys.path.append("src/server")
+    port = int(getenv("PORT", 8000))
+    uvicorn.run("src.server.app:app", host="0.0.0.0", port=port, reload=True)

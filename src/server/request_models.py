@@ -6,7 +6,7 @@ class PredictionItemRequest(BaseModel):
     content: str = Field(..., description="link or text > 30 words")
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "type": "link",
                 "content": "https://g1.globo.com/politica/noticia/2024/02/09/video-reuniao-bolsonaro-ministros-golpe-de-estado.ghtml"

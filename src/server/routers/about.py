@@ -10,7 +10,7 @@ router = APIRouter(
 )
 
 # Templates
-templates = Jinja2Templates(directory='templates')
+templates = Jinja2Templates(directory='src/server/templates')
 
 # HTTP Methods
 @router.get('/')
