@@ -1,0 +1,9 @@
+numpy
+tensorflow==2.15.0
+pandas
+scikit-learn
+regex
+transformers==4.35.2
+python-multipart
+scipy
+typing

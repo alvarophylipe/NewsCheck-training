@@ -1,13 +1,11 @@
 numpy
-tensorflow==2.15.0
-pandas
-scikit-learn
 fastapi==0.104.1
 uvicorn==0.24.0.post1
 regex
 jinja2==3.1.2
-transformers==4.35.2
 python-multipart
-scipy
 bs4
 typing
+requests
+python-dotenv
+starlette

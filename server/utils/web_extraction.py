@@ -12,7 +12,7 @@ def _get_content_soup(url):
 def _get_p_text_from_soup(soup: BeautifulSoup):
     p = soup.find_all('p')
     raw_text = [_remove_control_characters(raw.text) for raw in p if len(raw.text.split()) > 30]
-    return ' '.join([_remove_quotations(text) for text in raw_text])
+    return ''' '''.join([_remove_quotations(text) for text in raw_text])
 
 
 def _remove_quotations(text):

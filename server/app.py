@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
-from src.server.routers import check, about
+from routers import check, about
 from starlette.staticfiles import StaticFiles
 from starlette import status
 
@@ -8,7 +8,7 @@ from starlette import status
 app = FastAPI()
 
 # Static Files
-app.mount('/static', StaticFiles(directory="src/server/static"), name="static")
+app.mount('/static', StaticFiles(directory="server/static"), name="static")
 
 # Routers
 app.include_router(check.router)

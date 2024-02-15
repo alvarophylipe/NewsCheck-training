@@ -7,6 +7,7 @@ class UIHandler {
     // Change the placeholder of the text input base on the selected type
     static changePlaceholder(type) {
         this.input.placeholder = type === "link" ? "Cole o link aqui..." : "Cole o texto aqui..."; 
+        this.input.value = ""
     }
 
     // Display the result on the user interface
