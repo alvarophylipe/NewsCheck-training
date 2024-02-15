@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from models import PredictionItem
-from request_models import PredictionItemRequest
-from utils.web_extraction import web_extract
-from utils.handlers import CustomRequestHandler
+from server.models import PredictionItem
+from server.request_models import PredictionItemRequest
+from server.utils.web_extraction import web_extract
+from server.utils.handlers import CustomRequestHandler
 
 
 # Router Configs 

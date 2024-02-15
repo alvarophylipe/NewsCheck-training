@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
-from routers import check, about
+from server.routers import check, about
 from starlette.staticfiles import StaticFiles
 from starlette import status
 
